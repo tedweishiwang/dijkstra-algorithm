@@ -84,13 +84,11 @@ public class Graph {
             }
         }
 
-        printPath(allNodes.get(goal));
-
         return allNodes.get(goal).shortestPath;
     }
 
-    public void printPath(Node goal) {
-        Node node = goal;
+    public void printPath(String goal) {
+        Node node = allNodes.get(goal);
         List<Node> path = new ArrayList<>();
         while (node.previousNode != null) {
             path.add(node);
@@ -100,10 +98,10 @@ public class Graph {
 
         Collections.reverse(path);
 
-        for (Node n : path) {
-            if (n == goal) System.out.println(n.val);
+        path.stream().forEach(n -> {
+            if (n == allNodes.get(goal)) System.out.println(n.val);
             else System.out.print(n.val + " --> ");
-        }
+        });
 
         System.out.println();
     }

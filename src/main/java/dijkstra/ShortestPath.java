@@ -5,7 +5,7 @@ import java.util.Map;
 public class ShortestPath {
 
     public static void main(String[] args) {
-        Map tickers = Map.of(
+        Map relations = Map.of(
             "A-B", Map.of("firstToSecond", 100, "secondToFirst", 99),
             "A-C", Map.of("firstToSecond", 1200, "secondToFirst", 1150),
             "D-B", Map.of("firstToSecond", 200, "secondToFirst", 180),
@@ -14,8 +14,11 @@ public class ShortestPath {
         );
 
         Graph graph = new Graph();
-        graph.buildGraph(tickers);
+        graph.buildGraph(relations);
         graph.printGraph();
         System.out.println("Shortest path from B-C is: " + graph.shortestPath(new String[]{"B", "C"}));
+
+        System.out.println("The shortest path from B to C is: ");
+        graph.printPath("C");
     }
 }
